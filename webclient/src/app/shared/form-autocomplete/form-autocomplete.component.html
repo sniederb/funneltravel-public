@@ -1,0 +1,11 @@
+<div [formGroup]="group">
+    <mat-input-container class="full-width"> 
+        <input matInput [matAutocomplete]="autocompleteExtension" [formControlName]="config.name" [type]="config.formControl" 
+            [placeholder]="config.label" (keyup)="search()" #autoCompleteInput>
+        <mat-autocomplete #autocompleteExtension="matAutocomplete" [displayWith]="displaySelection.bind(this)" (optionSelected)="onOptionSelected($event)">
+            <mat-option *ngFor="let entity of searchResults | async" [value]="getKey(entity)">
+                <span>{{ getLabel(entity) }}</span>
+            </mat-option>
+        </mat-autocomplete>
+    </mat-input-container>
+</div>
